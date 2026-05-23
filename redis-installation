@@ -1,0 +1,24 @@
+#Install Redis on Linux
+
+sudo -i
+sudo apt-get install lsb-release curl gpg
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+sudo apt-get update
+sudo apt-get install redis
+
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+
+#Next go to redis configuration file
+
+cd /etc/redis
+vi redis.conf
+change bind to 0.0.0.0
+protected-mode to no
+save the file with esc :wq!
+
+#Then again restart the redis
+systemctl restart redis-server
+
