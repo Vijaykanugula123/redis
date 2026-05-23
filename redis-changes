@@ -1,0 +1,11 @@
+changes for redis.service
+cd /etc/
+cd redis/
+ls
+nano redis.conf
+
+changes
+bind 0.0.0.0 -::1
+protected-mode no
+systemctl restart redis.service
+systemctl status redis.service
